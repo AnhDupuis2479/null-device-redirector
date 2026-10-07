@@ -33,3 +33,10 @@ The class is reusable across multiple `with` blocks but not designed for nesting
 
 - `NullRedirect` — the context manager class.
 - `null_redirect()` — factory function returning a new `NullRedirect` instance.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
